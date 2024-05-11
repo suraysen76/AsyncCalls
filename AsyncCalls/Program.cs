@@ -15,15 +15,12 @@ namespace AsyncCalls
             sw.Stop();
 
             var elapsed = sw.ElapsedMilliseconds;
-            Console.WriteLine($"Total Elapsed: {elapsed} ms");
+            Console.WriteLine($"Total Time Elapsed: {elapsed} ms");
         }
         static async Task  MethodWithSec<T>(T sec)
         {
-
             await Task.Delay((Convert.ToInt32(sec)*1000));
             Console.WriteLine("MethodWith{0}Sec finshed",sec);
         }
-
-
     }
 }
