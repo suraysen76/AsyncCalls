@@ -11,30 +11,19 @@ namespace AsyncCalls
             var sw = new Stopwatch();
             sw.Start();
 
-            Task.WaitAll(MethodWith5Sec(), MethodWith7Sec(), MethodWith2Sec());
+            Task.WaitAll(MethodWithSec(7), MethodWithSec(2), MethodWithSec(5), MethodWithSec(10));
             sw.Stop();
 
             var elapsed = sw.ElapsedMilliseconds;
             Console.WriteLine($"Total Elapsed: {elapsed} ms");
         }
-        static async Task MethodWith5Sec()
+        static async Task  MethodWithSec<T>(T sec)
         {
-            await Task.Delay(5000);
-            Console.WriteLine("MethodWith5Sec finished");
+
+            await Task.Delay((Convert.ToInt32(sec)*1000));
+            Console.WriteLine("MethodWith{0}Sec finshed",sec);
         }
 
-        static async Task MethodWith7Sec()
-        {
-            await Task.Delay(7000);
-            Console.WriteLine("MethodWith7Sec finished");
-        }
 
-        static async Task MethodWith2Sec()
-        {
-            await Task.Delay(2000);
-            Console.WriteLine("MethodWith2Sec finished");
-        }
-
-        
     }
 }
